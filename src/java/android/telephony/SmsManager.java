@@ -1072,6 +1072,22 @@ public final class SmsManager {
         }
     }
 
+    /**
+     * Set SMS prompt property, enabled or not
+     * @hide
+     */
+    public void setSMSPromptEnabled(boolean bool) {
+        ISms iccISms = null;
+        try {
+            iccISms = ISms.Stub.asInterface(ServiceManager.getService("isms"));
+            iccISms.setSMSPromptEnabled(bool);
+        } catch (RemoteException ex) {
+            //ignore it
+        } catch (NullPointerException ex) {
+            //ignore it
+        }
+    }
+
     // see SmsMessage.getStatusOnIcc
 
     /** Free space (TS 51.011 10.5.3 / 3GPP2 C.S0023 3.4.27). */
