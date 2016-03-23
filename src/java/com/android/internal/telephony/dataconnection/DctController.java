@@ -578,6 +578,11 @@ public class DctController extends Handler {
             subId = mSubController.getDefaultDataSubId();
         } else {
             subId = Integer.parseInt(topSubId);
+            if (apnForNetworkRequest(retRequestInfo.request).equals(
+                    PhoneConstants.APN_TYPE_IMS) && mNeedsDdsSwitch.get()) {
+                logd("getTopPriorityRequestPhoneId: ims request, use dds phone id");
+                subId = mSubController.getDefaultDataSubId();
+            }
         }
         final int phoneId = mSubController.getPhoneId(subId);
         if (phoneId == DEFAULT_PHONE_INDEX) {
