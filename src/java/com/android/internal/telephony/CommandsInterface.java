@@ -2046,4 +2046,5 @@ public interface CommandsInterface {
      */
     void setOnCatSendSmsResult(Handler h, int what, Object obj);
     void unSetOnCatSendSmsResult(Handler h);
+
 }
